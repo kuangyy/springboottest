@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kykys.index.data.wechat.PeopleModelMapper" >
+  <resultMap id="BaseResultMap" type="cn.kykys.index.model.wechat.PeopleModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="unionid" property="unionid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="coins" property="coins" jdbcType="BIGINT" />
+    <result column="points" property="points" jdbcType="BIGINT" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="last_increase_time" property="lastIncreaseTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, openid, unionid, name, coins, points, level, last_increase_time, create_time,
+    update_time, last_login_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from people
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from people
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.kykys.index.model.wechat.PeopleModel" >
+    insert into people (id, openid, unionid,
+      name, coins, points,
+      level, last_increase_time, create_time,
+      update_time, last_login_time)
+    values (#{id,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, #{unionid,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{coins,jdbcType=BIGINT}, #{points,jdbcType=BIGINT},
+      #{level,jdbcType=INTEGER}, #{lastIncreaseTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.kykys.index.model.wechat.PeopleModel" >
+    insert into people
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="unionid != null" >
+        unionid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="coins != null" >
+        coins,
+      </if>
+      <if test="points != null" >
+        points,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="lastIncreaseTime != null" >
+        last_increase_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="coins != null" >
+        #{coins,jdbcType=BIGINT},
+      </if>
+      <if test="points != null" >
+        #{points,jdbcType=BIGINT},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="lastIncreaseTime != null" >
+        #{lastIncreaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.kykys.index.model.wechat.PeopleModel" >
+    update people
+    <set >
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null" >
+        unionid = #{unionid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="coins != null" >
+        coins = #{coins,jdbcType=BIGINT},
+      </if>
+      <if test="points != null" >
+        points = #{points,jdbcType=BIGINT},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="lastIncreaseTime != null" >
+        last_increase_time = #{lastIncreaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.kykys.index.model.wechat.PeopleModel" >
+    update people
+    set openid = #{openid,jdbcType=VARCHAR},
+      unionid = #{unionid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      coins = #{coins,jdbcType=BIGINT},
+      points = #{points,jdbcType=BIGINT},
+      level = #{level,jdbcType=INTEGER},
+      last_increase_time = #{lastIncreaseTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+  <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from people where openid = #{openId}
+  </select>
+
+
+  <select id="selectByName" parameterType="java.lang.String" resultType="int">
+    select count(1) from people where name = #{name}
+  </select>
+
+
+</mapper>

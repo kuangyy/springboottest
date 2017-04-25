@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kykys.index.data.kykys.BookModelMapper" >
+  <resultMap id="BaseResultMap" type="cn.kykys.index.model.blog.BookModel" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="DOUBLE" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="view_count" property="viewCount" jdbcType="BIGINT" />
+    <result column="like_count" property="likeCount" jdbcType="BIGINT" />
+    <result column="download_url" property="downloadUrl" jdbcType="VARCHAR" />
+    <result column="download_count" property="downloadCount" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.kykys.index.model.blog.BookModel" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, summary, author, score, pic, view_count, like_count, download_url, download_count, 
+    create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from book
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from book
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.kykys.index.model.blog.BookModel" >
+    insert into book (id, name, summary, 
+      author, score, pic, 
+      view_count, like_count, download_url, 
+      download_count, create_time, update_time, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE}, #{pic,jdbcType=VARCHAR}, 
+      #{viewCount,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{downloadUrl,jdbcType=VARCHAR}, 
+      #{downloadCount,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.kykys.index.model.blog.BookModel" >
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="viewCount != null" >
+        view_count,
+      </if>
+      <if test="likeCount != null" >
+        like_count,
+      </if>
+      <if test="downloadUrl != null" >
+        download_url,
+      </if>
+      <if test="downloadCount != null" >
+        download_count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="viewCount != null" >
+        #{viewCount,jdbcType=BIGINT},
+      </if>
+      <if test="likeCount != null" >
+        #{likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="downloadUrl != null" >
+        #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadCount != null" >
+        #{downloadCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.kykys.index.model.blog.BookModel" >
+    update book
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="viewCount != null" >
+        view_count = #{viewCount,jdbcType=BIGINT},
+      </if>
+      <if test="likeCount != null" >
+        like_count = #{likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="downloadUrl != null" >
+        download_url = #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadCount != null" >
+        download_count = #{downloadCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.kykys.index.model.blog.BookModel" >
+    update book
+    set name = #{name,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DOUBLE},
+      pic = #{pic,jdbcType=VARCHAR},
+      view_count = #{viewCount,jdbcType=BIGINT},
+      like_count = #{likeCount,jdbcType=BIGINT},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      download_count = #{downloadCount,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.kykys.index.model.blog.BookModel" >
+    update book
+    set name = #{name,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DOUBLE},
+      pic = #{pic,jdbcType=VARCHAR},
+      view_count = #{viewCount,jdbcType=BIGINT},
+      like_count = #{likeCount,jdbcType=BIGINT},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      download_count = #{downloadCount,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+
+
+
+  <select id="searchByPage" parameterType="Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from book
+    <where>
+      <if test="word != null">
+        AND name like CONCAT('%',#{word},'%')
+      </if>
+    </where>
+    ORDER BY score DESC ,name ,update_time DESC ,create_time DESC
+    <if test="offset != null and limit != null">
+      limit #{offset},#{limit}
+    </if>
+  </select>
+  <select id="searchCount" parameterType="Map" resultType="int">
+    select
+    count(1)
+    from book
+    <where>
+      <if test="word != null">
+        AND name like CONCAT('%',#{word},'%')
+      </if>
+    </where>
+  </select>
+
+
+
+  <select id="selectByTag" parameterType="Map" resultMap="BaseResultMap">
+    select
+    p.*
+    from posts p LEFT JOIN r_book_tag r ON r.book_id = p.id
+    <where>
+      <if test="tagId != null">
+        AND r.tag_id = #{tagId}
+      </if>
+    </where>
+    ORDER BY p.score DESC ,p.name ,p.update_time DESC ,p.create_time DESC
+    <if test="offset != null and limit != null">
+      limit #{offset},#{limit}
+    </if>
+  </select>
+
+  <select id="selectByTagCount" parameterType="java.util.Map" resultType="int">
+    select
+    COUNT(1)
+    from book p LEFT JOIN r_book_tag r ON r.book_id = p.id
+    <where>
+      <if test="tagId != null">
+        AND r.tag_id = #{tagId}
+      </if>
+    </where>
+  </select>
+
+
+
+</mapper>
