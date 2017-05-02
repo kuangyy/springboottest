@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.kykys.index.data.kykys.MottoModelMapper" >
-  <resultMap id="BaseResultMap" type="cn.kykys.index.model.blog.MottoModel" >
+<mapper namespace="com.kykys.demo.data.kykys.MottoModelMapper" >
+  <resultMap id="BaseResultMap" type="com.kykys.demo.model.kykys.MottoModel" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="translate" property="translate" jdbcType="VARCHAR" />
@@ -20,13 +20,13 @@
     delete from motto
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="cn.kykys.index.model.blog.MottoModel" >
+  <insert id="insert" parameterType="com.kykys.demo.model.kykys.MottoModel" >
     insert into motto (id, name, translate, 
       create_time)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{translate,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="cn.kykys.index.model.blog.MottoModel" >
+  <insert id="insertSelective" parameterType="com.kykys.demo.model.kykys.MottoModel" >
     insert into motto
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.kykys.index.model.blog.MottoModel" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.kykys.demo.model.kykys.MottoModel" >
     update motto
     <set >
       <if test="name != null" >
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.kykys.index.model.blog.MottoModel" >
+  <update id="updateByPrimaryKey" parameterType="com.kykys.demo.model.kykys.MottoModel" >
     update motto
     set name = #{name,jdbcType=VARCHAR},
       translate = #{translate,jdbcType=VARCHAR},

@@ -26,8 +26,7 @@ public class ApplicationAdvice {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("*")
-                        .allowedMethods("*")
-                        .allowedHeaders("*")
+                        .allowedMethods("GET","POST","PUT","DELETE")
                         .allowCredentials(true)
                         .maxAge(3600);
             }

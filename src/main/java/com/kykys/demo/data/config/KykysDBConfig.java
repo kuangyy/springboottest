@@ -19,10 +19,10 @@ import javax.sql.DataSource;
  * Created by kuangye on 2017/4/24.
  */
 @Configuration
-@MapperScan(basePackages = "com.kykys.data",annotationClass = KykysDB.class,sqlSessionFactoryRef = "kykysdbSqlSessionFactory")
+@MapperScan(basePackages = "com.kykys.demo.data.kykys",annotationClass = KykysDB.class,sqlSessionFactoryRef = "kykysdbSqlSessionFactory")
 public class KykysDBConfig {
 
-    static final String MAPPER_LOCATION = "classpath*:kykys/*.xml";
+    static final String MAPPER_LOCATION = "classpath*:mapper/kykys/*.xml";
 
     @Primary
     @Bean(name = "kykysdbDataSource")
