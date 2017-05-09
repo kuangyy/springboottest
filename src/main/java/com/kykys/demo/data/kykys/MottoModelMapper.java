@@ -23,7 +23,7 @@ public interface MottoModelMapper {
 
     MottoModel selectByRandom();
 
-    List<MottoModel> selectByPage(Map<String, ?> map);
+    List<MottoModel> selectByPage();
 
     int count(Map<String, ?> map);
 }

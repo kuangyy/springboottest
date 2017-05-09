@@ -86,14 +86,10 @@
     </select>
 
 
-    <select id="selectByPage" parameterType="Map" resultMap="BaseResultMap">
+    <select id="selectByPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from motto
-
-        <if test="offset != null and limit != null">
-            limit #{offset},#{limit}
-        </if>
     </select>
     <select id="count" parameterType="Map" resultType="int">
         select

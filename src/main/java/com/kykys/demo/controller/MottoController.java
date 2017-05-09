@@ -1,6 +1,7 @@
 package com.kykys.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
 import com.kykys.demo.data.kykys.MottoModelMapper;
 import com.kykys.demo.model.kykys.MottoModel;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,9 @@ public class MottoController {
     public JSONObject list() {
         JSONObject jsonObject = new JSONObject();
 
-        List<MottoModel> mottoModelList = mottoModelMapper.selectByPage(null);
+        PageHelper.startPage(1, 1);
+        List<MottoModel> mottoModelList = mottoModelMapper.selectByPage();
+        long total = PageHelper.count(()->mottoModelMapper.selectByPage());
         jsonObject.put("list", mottoModelList);
 
         return jsonObject;
