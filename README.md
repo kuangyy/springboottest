@@ -13,3 +13,5 @@ __just a demo__
 3:a blog system
 
 
+user click add secure code button then gernerate a code for an unique private key
+ use this code or 

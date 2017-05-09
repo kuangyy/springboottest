@@ -28,6 +28,10 @@ public class GoogleAuthenticatorUtils  {
      */
     private static final int timeExcursion = 1;
 
+    private static final int loopSecond = 30;
+
+    private static final int codeLength = 6;
+
     /**
      * 创建一个密钥
      */
@@ -47,9 +51,10 @@ public class GoogleAuthenticatorUtils  {
      * @param code      用户输入的TOTP
      */
     public static boolean verify(String secretKey, String code) {
-        long time = System.currentTimeMillis() / 1000 / 30;
+        long time = System.currentTimeMillis() / 1000 / loopSecond;
         for (int i = -timeExcursion; i <= timeExcursion; i++) {
             String totp = getTOTP(secretKey, time + i);
+            System.out.println(totp);
             if (code.equals(totp)) {
                 return true;
             }
@@ -68,7 +73,7 @@ public class GoogleAuthenticatorUtils  {
         byte[] bytes = base32.decode(secretKey.toUpperCase());
         String hexKey = Hex.encodeHexString(bytes);
         String hexTime = Long.toHexString(time);
-        return TOTP.generateTOTP(hexKey, hexTime, "6");
+        return TOTP.generateTOTP(hexKey, hexTime, String.valueOf(codeLength));
     }
 
     /**
@@ -91,7 +96,29 @@ public class GoogleAuthenticatorUtils  {
     }
 
 
+
     public static void main(String[] args) {
 
+//        String key = createSecretKey();
+//        System.out.println(key);
+
+//        String url = createGoogleAuthQRCodeData(key,"495621336@qq.com","ky");
+//        System.out.println(url);
+
+//        String googleJPGUrl = "https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=" + url;
+
+
+        String myKey = "52mto7dipeoiae3yc7qhccw3svx7hxm2";
+        String myUrl = "otpauth://totp/ky%3A495621336%40qq.com?secret=52mto7dipeoiae3yc7qhccw3svx7hxm2&issuer=ky";
+
+
+        verify(myKey,"748853");
+
+
     }
+
+
+
+
+
 }
